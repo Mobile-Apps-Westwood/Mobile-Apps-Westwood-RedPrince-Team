@@ -4,7 +4,10 @@ using System.Text;
 
 namespace RedPrince.Models.Titles
 {
-    internal class TitleGames
+    public static class TitleGames
     {
+
+        public static string Title { get; } = "Games Menu";
+
     }
 }
