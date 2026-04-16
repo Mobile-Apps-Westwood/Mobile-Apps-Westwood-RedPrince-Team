@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using RedPrince.Views;
 
 namespace RedPrince.ViewModels
 {
@@ -21,7 +22,7 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task LoginHintClicked()
         {
-            await Shell.Current.GoToAsync(nameof());
+            await Shell.Current.GoToAsync(nameof(HintPage));
         }
 
         [RelayCommand]
@@ -33,7 +34,7 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task LoginHomeClicked()
         {
-            await Shell.Current.GoToAsync(nameof(LoginHomeClicked));
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
 
         public MainViewModel()

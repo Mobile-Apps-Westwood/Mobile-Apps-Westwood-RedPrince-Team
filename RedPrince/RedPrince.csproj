@@ -72,9 +72,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\GamesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+	  <Compile Update="Views\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\HintPage.xaml.cs">
+	    <DependentUpon>HintPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -88,6 +94,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StorePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HintPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
