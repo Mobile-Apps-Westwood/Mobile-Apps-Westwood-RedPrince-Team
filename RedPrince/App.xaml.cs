@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RedPrince.Views;
 
 namespace RedPrince
 {
@@ -8,7 +9,7 @@ namespace RedPrince
         {
             InitializeComponent();
 
-            LoginPage = new AppShell();
+            MainPage = new AppShell();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

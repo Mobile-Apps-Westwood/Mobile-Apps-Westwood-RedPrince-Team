@@ -7,15 +7,15 @@ using System.Text;
 
 namespace RedPrince.ViewModels
 {
-    public partial class LoginViewModel : ObservableObject
+    public partial class MainPageViewModel : ObservableObject
     {
-        public string Title => TitleLogin.Title;
+        public string Title => TitleMain.Title;
 
-        public string Hint => TitleLogin.Hint;
+        public string Hint => TitleMain.Hint;
 
-        public string Create => TitleLogin.Create;
+        public string Create => TitleMain.Create;
 
-        public string Home => TitleLogin.Home;
+        public string Home => TitleMain.Home;
 
 
         [RelayCommand]
@@ -36,7 +36,7 @@ namespace RedPrince.ViewModels
             await Shell.Current.GoToAsync(nameof(LoginHomeClicked));
         }
 
-        public LoginViewModel()
+        public MainPageViewModel()
         {
 
         }

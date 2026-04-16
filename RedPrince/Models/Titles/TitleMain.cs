@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedPrince.Models.Titles
 {
-    public static class TitleLogin
+    public static class TitleMain
     {
         public static string Title { get; } = "Login Menu";
         public static string Hint { get; } = "Hint page";
