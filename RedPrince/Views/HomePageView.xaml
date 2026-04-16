@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RedPrince.Views.HomePageView">
+    
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+        <Label 
+            Text="RedPrince Casino"
+            FontSize="32"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Margin="0,0,0,40" />
+
+        <Button Text="Games" 
+                FontSize="24"
+                HeightRequest="60"
+                CornerRadius="8" />
+
+        <Button Text="Leaderboard" 
+                FontSize="24"
+                HeightRequest="60"
+                CornerRadius="8" />
+
+        <Button Text="Store" 
+                FontSize="24"
+                HeightRequest="60"
+                CornerRadius="8" />
+
+        <Button Text="Settings" 
+                FontSize="24"
+                HeightRequest="60"
+                CornerRadius="8" />
+
+    </VerticalStackLayout>
+
+    
+</ContentView>
