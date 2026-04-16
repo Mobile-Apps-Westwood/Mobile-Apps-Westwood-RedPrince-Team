@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedPrince.Models.Temp
 {
-    internal class Noah
+    internal class NoahRevelett
     {
     }
 }
