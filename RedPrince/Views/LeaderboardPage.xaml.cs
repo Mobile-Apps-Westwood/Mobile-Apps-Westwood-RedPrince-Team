@@ -1,6 +1,6 @@
 namespace RedPrince.Views;
 
-public partial class LeaderboardPage : ContentView
+public partial class LeaderboardPage : ContentPage
 {
 	public LeaderboardPage()
 	{

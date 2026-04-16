@@ -1,6 +1,6 @@
 namespace RedPrince.Views;
 
-public partial class HomePage : ContentView
+public partial class HomePage : ContentPage
 {
 	public HomePage()
 	{

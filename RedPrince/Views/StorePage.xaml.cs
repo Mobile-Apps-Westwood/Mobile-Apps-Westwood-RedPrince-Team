@@ -1,6 +1,6 @@
 namespace RedPrince.Views;
 
-public partial class StorePage : ContentView
+public partial class StorePage : ContentPage
 {
 	public StorePage()
 	{
