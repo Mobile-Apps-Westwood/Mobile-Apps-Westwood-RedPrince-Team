@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RedPrince.ViewModels
 {
-    public partial class MainPageViewModel : ObservableObject
+    public partial class MainViewModel : ObservableObject
     {
         public string Title => TitleMain.Title;
 
@@ -36,7 +36,7 @@ namespace RedPrince.ViewModels
             await Shell.Current.GoToAsync(nameof(LoginHomeClicked));
         }
 
-        public MainPageViewModel()
+        public MainViewModel()
         {
 
         }
