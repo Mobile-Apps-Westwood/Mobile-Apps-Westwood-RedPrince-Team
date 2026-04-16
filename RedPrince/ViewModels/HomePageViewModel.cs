@@ -10,11 +10,11 @@ namespace RedPrince.ViewModels
     public partial class HomePageViewModel : ObservableObject
     {
 
-        public string Title => HomePageTitles.Title;
-        public string GamesButton => HomePageTitles.GamesButton;
-        public string LeaderboardButton => HomePageTitles.LeaderboardButton;
-        public string StoreButton => HomePageTitles.StoreButton;
-        public string SettingsButton => HomePageTitles.SettingsButton;
+        public string Title => TitleHome.Title;
+        public string GamesButton => TitleHome.GamesButton;
+        public string LeaderboardButton => TitleHome.LeaderboardButton;
+        public string StoreButton => TitleHome.StoreButton;
+        public string SettingsButton => TitleHome.SettingsButton;
 
         [RelayCommand]
         private async Task GamesButtonClicked()

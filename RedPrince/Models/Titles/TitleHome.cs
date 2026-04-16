@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedPrince.Models.Titles
 {
-    public class HomePageTitles
+    public class TitleHome
     {
 
         public static string Title { get; } = "Home Page";

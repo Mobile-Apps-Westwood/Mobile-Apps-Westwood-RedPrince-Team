@@ -2,12 +2,12 @@ using RedPrince.ViewModels;
 
 namespace RedPrince.Views;
 
-public partial class LoginPage : ContentView
+public partial class MainPage : ContentView
 {
-	public LoginPage()
+	public MainPage()
 	{
 		InitializeComponent();
-        BindingContext = new LoginViewModel();
+        BindingContext = new MainPageViewModel();
 
     }
 }
