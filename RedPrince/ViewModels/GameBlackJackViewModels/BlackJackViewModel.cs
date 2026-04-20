@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RedPrince.Models.Titles;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+using System.Windows.Input;
 
 namespace RedPrince.ViewModels.GameBlackJackViewModels
 {
@@ -14,9 +15,11 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             private readonly Deck _deck = new();
             private readonly Hand _playerHand = new();
             private readonly Hand _dealerHand = new();
+            public string Title => TitleGames.BlackJack;
 
-            // ── Backing fields ────────────────────────────────────────────────────
-            private GameState _gameState = GameState.Idle;
+
+        // ── Backing fields ────────────────────────────────────────────────────
+        private GameState _gameState = GameState.Idle;
             private int _playerBalance = 1000;
             private int _currentBet = 0;
             private int _selectedChip = 25;

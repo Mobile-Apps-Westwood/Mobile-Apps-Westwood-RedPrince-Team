@@ -9,5 +9,7 @@ namespace RedPrince.Models.Titles
 
         public static string Title { get; } = "Games Menu";
 
+        public static string BlackJack { get; } = "Black Jack";
+
     }
 }

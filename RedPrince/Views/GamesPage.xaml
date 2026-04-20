@@ -8,5 +8,14 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button 
+            Text="{Binding BlackJackPage}" 
+            FontSize="24"
+            HeightRequest="60"
+            CornerRadius="8"
+            Command="{Binding BlackJackPageClickedCommand}"/>
+        
     </VerticalStackLayout>
+    
 </ContentPage>

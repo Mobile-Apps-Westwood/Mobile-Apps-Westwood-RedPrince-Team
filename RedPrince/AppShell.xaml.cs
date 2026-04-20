@@ -1,5 +1,6 @@
 ﻿
 using RedPrince.Views;
+using RedPrince.Views.GameBlackJackViews;
 
 namespace RedPrince
 {
@@ -26,6 +27,7 @@ namespace RedPrince
             Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             Routing.RegisterRoute(nameof(SettingsChangeUserPassPage), typeof(SettingsChangeUserPassPage));
+            Routing.RegisterRoute(nameof(BlackJackPage), typeof(BlackJackPage));
 
         }
     }
