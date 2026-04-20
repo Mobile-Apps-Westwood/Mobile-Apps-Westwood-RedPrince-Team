@@ -5,6 +5,7 @@ using RedPrince.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RedPrince.ViewModels
 {
@@ -15,6 +16,9 @@ namespace RedPrince.ViewModels
         public string ChangeUserPass => TitleSettings.ChangeUserPass;
 
         public string ToggleSound => TitleSettings.ToggleSound;
+
+        [ObservableProperty]
+        private bool isOn;
 
 
 
@@ -27,7 +31,7 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task ToggleSoundClicked()
         {
-            //activate the switch
+            IsOn = !IsOn;
         }
     }
 }

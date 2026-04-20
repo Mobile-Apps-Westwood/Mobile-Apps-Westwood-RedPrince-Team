@@ -22,9 +22,12 @@
 
         <HorizontalStackLayout  HorizontalOptions="Start">
 
-            <Button Text ="{Binding ToggleSound}"
-                    Command = "{Binding ToggleSoundCommand}"
-                    BackgroundColor ="transparent"/>
+            <Label Text="{Binding ToggleSound}"
+                   VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleSoundClickedCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <Switch IsToggled="{Binding IsOn}" 
                     ThumbColor="Blue" 
@@ -32,5 +35,6 @@
                     HorizontalOptions="Center"/>
 
         </HorizontalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
