@@ -9,7 +9,6 @@ namespace RedPrince
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
