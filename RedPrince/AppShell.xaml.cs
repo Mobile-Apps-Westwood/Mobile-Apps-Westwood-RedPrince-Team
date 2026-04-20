@@ -16,7 +16,7 @@ namespace RedPrince
 
             //Login
             Routing.RegisterRoute(nameof(HintPage), typeof(HintPage));
-
+            Routing.RegisterRoute(nameof(CreateAccountPage), typeof(CreateAccountPage));
 
             //Home
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));

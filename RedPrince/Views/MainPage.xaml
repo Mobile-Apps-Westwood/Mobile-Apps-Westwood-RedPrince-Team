@@ -5,39 +5,56 @@
              Title="{Binding Title}">
 
 
-    <VerticalStackLayout>
+	<VerticalStackLayout Spacing="15" Margin="20" VerticalOptions="Center">
 
-        <Grid Margin ="5, 20, 5, 5" Padding="5" RowSpacing="6" ColumnSpacing="12">
+		<Label Text="Sign In"
+			   FontSize="32"
+			   FontAttributes="Bold"
+			   HorizontalOptions="Center"
+			   Margin="0,0,0,30" />
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height = "Auto"/>
-                <RowDefinition Height = "Auto"/>
-                <RowDefinition Height = "Auto"/>
-            </Grid.RowDefinitions>
+		<Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="LightGray">
+			<Entry Placeholder="Username"
+				   Text="{Binding Username}"
+				   Margin="10,5"
+				   ClearButtonVisibility="WhileEditing" />
+		</Frame>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*"/>
-                <ColumnDefinition Width = "*"/>
-            </Grid.ColumnDefinitions>
+		<Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="LightGray">
+			<Entry Placeholder="Password"
+				   Text="{Binding Password}"
+				   IsPassword="True"
+				   Margin="10,5"
+				   ClearButtonVisibility="WhileEditing" />
+		</Frame>
 
-            <Button Grid.Row= "0"
-					Grid.Column= "0"
-					Text ="{Binding Hint}"
-					Command="{Binding HintClickedCommand}" />
+		<Button Text="Login"
+				Command="{Binding HomeClickedCommand}"
+				HeightRequest="50"
+				CornerRadius="10"
+				Margin="0,20,0,0"
+				FontSize="18"
+				FontAttributes="Bold" />
 
-            <Button Grid.Row= "0"
-					Grid.Column= "1"
-					Text ="{Binding Create}"
-					Command="{Binding CreateClickedCommand}" />
+		<Grid Margin="0, 10, 0, 0" ColumnSpacing="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
 
-            <Button Grid.Row= "1"
-					Grid.Column= "0"
-					Grid.ColumnSpan="2"
-					Text ="{Binding Home}"
-					Command="{Binding HomeClickedCommand}" />
+			<Button Grid.Column="0"
+					Text="{Binding Hint}"
+					Command="{Binding HintClickedCommand}"
+					BackgroundColor="Transparent"
+					TextColor="Gray" />
 
-        </Grid>
+			<Button Grid.Column="1"
+					Text="{Binding Create}"
+					Command="{Binding CreateClickedCommand}"
+					BackgroundColor="Transparent"
+					TextColor="Gray" />
+		</Grid>
 
-    </VerticalStackLayout>
+	</VerticalStackLayout>
     
 </ContentPage>

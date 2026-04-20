@@ -18,6 +18,18 @@ namespace RedPrince.ViewModels
 
         public string Home => TitleMain.Home;
 
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(HomeClickedCommand))]
+        private string username;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(HomeClickedCommand))]
+        private string password;
+
+        private bool CanLogin()
+        {
+            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+        }
 
         [RelayCommand]
         private async Task HintClicked()
@@ -25,13 +37,13 @@ namespace RedPrince.ViewModels
             await Shell.Current.GoToAsync(nameof(HintPage));
         }
 
-        //[RelayCommand]
-        //private async Task LoginCreateClicked()
-        //{
-        //    await Shell.Current.GoToAsync(nameof());
-        //}
-
         [RelayCommand]
+        private async Task CreateClicked()
+        {
+            await Shell.Current.GoToAsync(nameof(CreateAccountPage));
+        }
+
+        [RelayCommand(CanExecute = nameof(CanLogin))]
         private async Task HomeClicked()
         {
             await Shell.Current.GoToAsync(nameof(HomePage));
