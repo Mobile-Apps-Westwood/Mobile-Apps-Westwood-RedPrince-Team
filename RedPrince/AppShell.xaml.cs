@@ -14,7 +14,8 @@ namespace RedPrince
         public void RegisterRouting()
         {
 
-            //Home
+            //Login
+            Routing.RegisterRoute(nameof(HintPage), typeof(HintPage));
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
 
             
@@ -22,6 +23,7 @@ namespace RedPrince
             //Settings
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             Routing.RegisterRoute(nameof(SettingsChangeUserPassPage), typeof(SettingsChangeUserPassPage));
+
         }
     }
 }

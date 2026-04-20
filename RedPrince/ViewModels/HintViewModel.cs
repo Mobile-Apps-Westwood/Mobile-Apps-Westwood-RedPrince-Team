@@ -13,11 +13,11 @@ namespace RedPrince.ViewModels
 
         public string Submit => TitleHint.Submit;
 
-        [RelayCommand]
-        private async Task LoginzSubmitClicked()
-        {
-            await Shell.Current.GoToAsync(nameof());
-        }
+        //[RelayCommand]
+        //private async Task LoginSubmitClicked()
+        //{
+        //    await Shell.Current.GoToAsync(nameof());
+        //}
 
     }
 }

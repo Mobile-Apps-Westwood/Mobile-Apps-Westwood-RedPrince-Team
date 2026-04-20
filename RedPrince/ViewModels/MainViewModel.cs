@@ -19,11 +19,11 @@ namespace RedPrince.ViewModels
         public string Home => TitleMain.Home;
 
 
-        //[RelayCommand]
-        //private async Task LoginHintClicked()
-        //{
-        //    await Shell.Current.GoToAsync(nameof());
-        //}
+        [RelayCommand]
+        private async Task HintClicked()
+        {
+            await Shell.Current.GoToAsync(nameof(HintPage));
+        }
 
         //[RelayCommand]
         //private async Task LoginCreateClicked()
@@ -32,9 +32,9 @@ namespace RedPrince.ViewModels
         //}
 
         [RelayCommand]
-        private async Task LoginHomeClicked()
+        private async Task HomeClicked()
         {
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            await Shell.Current.GoToAsync(nameof(HomePage));
         }
 
         public MainViewModel()
