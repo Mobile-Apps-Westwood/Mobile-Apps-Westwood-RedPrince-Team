@@ -16,11 +16,14 @@ namespace RedPrince
 
             //Login
             Routing.RegisterRoute(nameof(HintPage), typeof(HintPage));
+
+
+            //Home
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
 
-            
-
-            //Settings
+            Routing.RegisterRoute(nameof(GamesPage), typeof(GamesPage));
+            Routing.RegisterRoute(nameof(LeaderboardPage), typeof(LeaderboardPage));
+            Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             Routing.RegisterRoute(nameof(SettingsChangeUserPassPage), typeof(SettingsChangeUserPassPage));
 
