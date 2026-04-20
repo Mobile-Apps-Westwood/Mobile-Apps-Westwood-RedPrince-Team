@@ -6,7 +6,7 @@ public partial class HintPage : ContentPage
 {
 	public HintPage()
 	{
-		InitializeComponent();
+        InitializeComponent();
         BindingContext = new HintViewModel();
     }
 }
