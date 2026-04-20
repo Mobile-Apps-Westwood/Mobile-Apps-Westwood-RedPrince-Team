@@ -43,7 +43,7 @@ namespace RedPrince.ViewModels
             await Shell.Current.GoToAsync(nameof(CreateAccountPage));
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanLogin))]
         private async Task HomeClicked()
         {
             await Shell.Current.GoToAsync(nameof(HomePage));
