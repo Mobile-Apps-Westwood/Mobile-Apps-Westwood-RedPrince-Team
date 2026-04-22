@@ -225,10 +225,24 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             private void DoAddChip(int amount)
             {
                 if (!CanPlaceBet) return;
-                int add = Math.Min(amount, _playerBalance);
-                if (add <= 0) return;
-                CurrentBet += add;
-                PlayerBalance -= add;
+
+                // Max bet check (NEW)
+                if (CurrentBet + amount > 500)
+                {
+                    StatusMessage = "Max bet is $500!";
+                    return;
+                }
+
+                // Prevent invalid chip usage
+                if (_playerBalance < amount)
+                {
+                    StatusMessage = "Not enough balance for that chip!";
+                    return;
+                }
+
+                CurrentBet += amount;
+                PlayerBalance -= amount;
+
                 GameState = GameState.Betting;
                 StatusMessage = $"Bet: ${CurrentBet}  |  Click Deal to play!";
             }
@@ -431,8 +445,18 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
 
             private void RevealDealerCard()
             {
-                var faceDown = DealerCards.FirstOrDefault(c => c.IsFaceDown);
-                faceDown?.Reveal();
+                // Reveal ALL UI cards
+                foreach (var cardVM in DealerCards)
+                {
+                    if (cardVM.IsFaceDown)
+                        cardVM.Reveal();
+                }
+
+                // Sync model cards
+                foreach (var card in _dealerHand.Cards)
+                {
+                    card.IsFaceDown = false;
+                }
             }
 
             private void UpdateScores()
