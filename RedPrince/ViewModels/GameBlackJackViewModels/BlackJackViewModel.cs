@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Microsoft.Maui.Storage;
 
 namespace RedPrince.ViewModels.GameBlackJackViewModels
 {
@@ -46,6 +47,10 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 NewGameCommand = new RelayCommand(DoNewRound, () => _gameState == GameState.RoundOver || _gameState == GameState.Idle);
                 AddChipCommand = new RelayCommand<int>(p => DoAddChip(p), _ => CanPlaceBet);
                 ClearBetCommand = new RelayCommand(DoClearBet, () => CanClearBet);
+                _wins = Preferences.Get("BJ_Wins", 0);
+                _losses = Preferences.Get("BJ_Losses", 0);
+                _pushes = Preferences.Get("BJ_Pushes", 0);
+                _playerBalance = Preferences.Get("BJ_Balance", 1000);
             }
 
             // ── Observable Collections ────────────────────────────────────────────

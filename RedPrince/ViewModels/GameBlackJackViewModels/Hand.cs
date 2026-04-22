@@ -19,24 +19,27 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
         /// <summary>
         /// Calculates the best hand value, treating Aces as 11 or 1 as needed.
         /// </summary>
+
         public int Value
         {
             get
             {
                 int total = 0;
-                int aces = 0;
+                int aceCount = 0;
 
-                foreach (var card in _cards)
+                foreach (var card in Cards)
                 {
-                    if (card.IsFaceDown) continue;
-                    if (card.Rank == Rank.Ace) aces++;
                     total += card.Value;
+
+                    if (card.Rank == Rank.Ace)
+                        aceCount++;
                 }
 
-                while (total > 21 && aces > 0)
+                // Upgrade Aces from 1 → 11 when possible
+                while (aceCount > 0 && total + 10 <= 21)
                 {
-                    total -= 10;
-                    aces--;
+                    total += 10;
+                    aceCount--;
                 }
 
                 return total;
