@@ -29,6 +29,7 @@ namespace RedPrince
             Routing.RegisterRoute(nameof(SettingsChangeUserPassPage), typeof(SettingsChangeUserPassPage));
             Routing.RegisterRoute(nameof(BlackJackPage), typeof(BlackJackPage));
 
+            Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));
         }
     }
 }

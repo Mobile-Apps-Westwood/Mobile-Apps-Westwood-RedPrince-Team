@@ -3,10 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedPrince.Views.StorePage"
              Title="{Binding Title}">
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <VerticalStackLayout Spacing="5" Padding="15" BackgroundColor="#F0F0F0">
+            <Label 
+                Text="{Binding CurrentBalanceLabel}"
+                FontSize="14"
+                FontAttributes="Bold"
+                TextColor="#333333" />
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Label 
+                    Text="{Binding UserBalance}"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="#2196F3" />
+                <Label 
+                    Text="{Binding CoinsLabel}"
+                    FontSize="18"
+                    VerticalTextAlignment="End"
+                    TextColor="#666666" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Redeem Your Coins"
+            FontSize="16"
+            FontAttributes="Bold"
+            TextColor="#333333"
+            Margin="0,10,0,0" />
+
+        <VerticalStackLayout Spacing="5">
+            <Button 
+                Text="{Binding Redeem10kLabel}"
+                Command="{Binding Redeem10kCoinsCommand}"
+                IsEnabled="{Binding Is10kEnabled}"
+                Padding="15"
+                CornerRadius="8"
+                FontSize="16"
+                FontAttributes="Bold"
+                BackgroundColor="#4CAF50"
+                TextColor="White" />
+            <Label 
+                Text="{Binding Button10kStatus}"
+                FontSize="12"
+                TextColor="#666666"
+                HorizontalOptions="Center" />
+            <Label 
+                Text="Every 5 seconds"
+                FontSize="11"
+                TextColor="#999999"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="5">
+            <Button 
+                Text="{Binding Redeem25kLabel}"
+                Command="{Binding Redeem25kCoinsCommand}"
+                IsEnabled="{Binding Is25kEnabled}"
+                Padding="15"
+                CornerRadius="8"
+                FontSize="16"
+                FontAttributes="Bold"
+                BackgroundColor="#2196F3"
+                TextColor="White" />
+            <Label 
+                Text="{Binding Button25kStatus}"
+                FontSize="12"
+                TextColor="#666666"
+                HorizontalOptions="Center" />
+            <Label 
+                Text="Every 30 seconds"
+                FontSize="11"
+                TextColor="#999999"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout Spacing="5">
+            <Button 
+                Text="{Binding Redeem50kLabel}"
+                Command="{Binding Redeem50kCoinsCommand}"
+                IsEnabled="{Binding Is50kEnabled}"
+                Padding="15"
+                CornerRadius="8"
+                FontSize="16"
+                FontAttributes="Bold"
+                BackgroundColor="#FF9800"
+                TextColor="White" />
+            <Label 
+                Text="{Binding Button50kStatus}"
+                FontSize="12"
+                TextColor="#666666"
+                HorizontalOptions="Center" />
+            <Label 
+                Text="Every 1 minute"
+                FontSize="11"
+                TextColor="#999999"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="5">
+            <Button 
+                Text="{Binding Redeem100kLabel}"
+                Command="{Binding Redeem100kCoinsCommand}"
+                IsEnabled="{Binding Is100kEnabled}"
+                Padding="15"
+                CornerRadius="8"
+                FontSize="16"
+                FontAttributes="Bold"
+                BackgroundColor="#9C27B0"
+                TextColor="White" />
+            <Label 
+                Text="{Binding Button100kStatus}"
+                FontSize="12"
+                TextColor="#666666"
+                HorizontalOptions="Center" />
+            <Label 
+                Text="Every 5 minutes"
+                FontSize="11"
+                TextColor="#999999"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
