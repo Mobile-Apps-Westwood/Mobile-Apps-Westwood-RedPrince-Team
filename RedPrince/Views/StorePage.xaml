@@ -3,127 +3,126 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedPrince.Views.StorePage"
              Title="{Binding Title}">
-
-    <VerticalStackLayout Padding="20" Spacing="15">
-
-        <VerticalStackLayout Spacing="5" Padding="15" BackgroundColor="#F0F0F0">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            
+            <!-- Current Balance Section -->
+            <Border 
+                Padding="20"
+                StrokeThickness="2"
+                Stroke="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}"
+                StrokeShape="RoundRectangle 12,12,12,12"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#1E1E1E}">
+                <VerticalStackLayout Spacing="8">
+                    <Label 
+                        Text="{Binding CurrentBalanceLabel}"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label 
+                            Text="{Binding UserBalance}"
+                            FontSize="32"
+                            FontAttributes="Bold"
+                            TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" />
+                        <Label 
+                            Text="{Binding CoinsLabel}"
+                            FontSize="18"
+                            VerticalTextAlignment="End"
+                            TextColor="{AppThemeBinding Light=#666666, Dark=#BDBDBD}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            
+            <!-- Redemption Title -->
             <Label 
-                Text="{Binding CurrentBalanceLabel}"
-                FontSize="14"
+                Text="Redeem Your Coins"
+                FontSize="16"
                 FontAttributes="Bold"
-                TextColor="#333333" />
-            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                TextColor="{AppThemeBinding Light=#333333, Dark=White}"
+                Margin="0,10,0,0" />
+
+            <!-- 100 Coins Button -->
+            <VerticalStackLayout Spacing="6">
+                <Button 
+                    Text="{Binding Redeem100Label}"
+                    Command="{Binding Redeem100CoinsCommand}"
+                    IsEnabled="{Binding Is100Enabled}"
+                    Style="{StaticResource HomeButton}"
+                    FontSize="16" />
                 <Label 
-                    Text="{Binding UserBalance}"
-                    FontSize="28"
-                    FontAttributes="Bold"
-                    TextColor="#2196F3" />
+                    Text="{Binding Button100Status}"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#BDBDBD}"
+                    HorizontalOptions="Center" />
                 <Label 
-                    Text="{Binding CoinsLabel}"
-                    FontSize="18"
-                    VerticalTextAlignment="End"
-                    TextColor="#666666" />
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
-        
-        <Label 
-            Text="Redeem Your Coins"
-            FontSize="16"
-            FontAttributes="Bold"
-            TextColor="#333333"
-            Margin="0,10,0,0" />
+                    Text="Every 5 seconds"
+                    FontSize="11"
+                    TextColor="{AppThemeBinding Light=#999999, Dark=#757575}"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
 
-        <VerticalStackLayout Spacing="5">
-            <Button 
-                Text="{Binding Redeem100Label}"
-                Command="{Binding Redeem100CoinsCommand}"
-                IsEnabled="{Binding Is100Enabled}"
-                Padding="15"
-                CornerRadius="8"
-                FontSize="16"
-                FontAttributes="Bold"
-                BackgroundColor="#4CAF50"
-                TextColor="White" />
-            <Label 
-                Text="{Binding Button100Status}"
-                FontSize="12"
-                TextColor="#666666"
-                HorizontalOptions="Center" />
-            <Label 
-                Text="Every 5 seconds"
-                FontSize="11"
-                TextColor="#999999"
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+            <!-- 1k Coins Button -->
+            <VerticalStackLayout Spacing="6">
+                <Button 
+                    Text="{Binding Redeem1kLabel}"
+                    Command="{Binding Redeem1kCoinsCommand}"
+                    IsEnabled="{Binding Is1kEnabled}"
+                    Style="{StaticResource HomeButton}"
+                    FontSize="16" />
+                <Label 
+                    Text="{Binding Button1kStatus}"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#BDBDBD}"
+                    HorizontalOptions="Center" />
+                <Label 
+                    Text="Every 30 seconds"
+                    FontSize="11"
+                    TextColor="{AppThemeBinding Light=#999999, Dark=#757575}"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            
+            <!-- 5k Coins Button -->
+            <VerticalStackLayout Spacing="6">
+                <Button 
+                    Text="{Binding Redeem5kLabel}"
+                    Command="{Binding Redeem5kCoinsCommand}"
+                    IsEnabled="{Binding Is5kEnabled}"
+                    Style="{StaticResource HomeButton}"
+                    FontSize="16" />
+                <Label 
+                    Text="{Binding Button5kStatus}"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#BDBDBD}"
+                    HorizontalOptions="Center" />
+                <Label 
+                    Text="Every 1 minute"
+                    FontSize="11"
+                    TextColor="{AppThemeBinding Light=#999999, Dark=#757575}"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
 
-        <VerticalStackLayout Spacing="5">
-            <Button 
-                Text="{Binding Redeem1kLabel}"
-                Command="{Binding Redeem1kCoinsCommand}"
-                IsEnabled="{Binding Is1kEnabled}"
-                Padding="15"
-                CornerRadius="8"
-                FontSize="16"
-                FontAttributes="Bold"
-                BackgroundColor="#2196F3"
-                TextColor="White" />
-            <Label 
-                Text="{Binding Button1kStatus}"
-                FontSize="12"
-                TextColor="#666666"
-                HorizontalOptions="Center" />
-            <Label 
-                Text="Every 30 seconds"
-                FontSize="11"
-                TextColor="#999999"
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
-        
-        <VerticalStackLayout Spacing="5">
-            <Button 
-                Text="{Binding Redeem5kLabel}"
-                Command="{Binding Redeem5kCoinsCommand}"
-                IsEnabled="{Binding Is5kEnabled}"
-                Padding="15"
-                CornerRadius="8"
-                FontSize="16"
-                FontAttributes="Bold"
-                BackgroundColor="#FF9800"
-                TextColor="White" />
-            <Label 
-                Text="{Binding Button5kStatus}"
-                FontSize="12"
-                TextColor="#666666"
-                HorizontalOptions="Center" />
-            <Label 
-                Text="Every 1 minute"
-                FontSize="11"
-                TextColor="#999999"
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+            <!-- 10k Coins Button -->
+            <VerticalStackLayout Spacing="6" Margin="0,0,0,20">
+                <Button 
+                    Text="{Binding Redeem10kLabel}"
+                    Command="{Binding Redeem10kCoinsCommand}"
+                    IsEnabled="{Binding Is10kEnabled}"
+                    Style="{StaticResource HomeButton}"
+                    FontSize="16" />
+                <Label 
+                    Text="{Binding Button10kStatus}"
+                    FontSize="12"
+                    TextColor="{AppThemeBinding Light=#666666, Dark=#BDBDBD}"
+                    HorizontalOptions="Center" />
+                <Label 
+                    Text="Every 5 minutes"
+                    FontSize="11"
+                    TextColor="{AppThemeBinding Light=#999999, Dark=#757575}"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
 
-        <VerticalStackLayout Spacing="5">
-            <Button 
-                Text="{Binding Redeem10kLabel}"
-                Command="{Binding Redeem10kCoinsCommand}"
-                IsEnabled="{Binding Is10kEnabled}"
-                Padding="15"
-                CornerRadius="8"
-                FontSize="16"
-                FontAttributes="Bold"
-                BackgroundColor="#9C27B0"
-                TextColor="White" />
-            <Label 
-                Text="{Binding Button10kStatus}"
-                FontSize="12"
-                TextColor="#666666"
-                HorizontalOptions="Center" />
-            <Label 
-                Text="Every 5 minutes"
-                FontSize="11"
-                TextColor="#999999"
-                HorizontalOptions="Center" />
         </VerticalStackLayout>
-
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
