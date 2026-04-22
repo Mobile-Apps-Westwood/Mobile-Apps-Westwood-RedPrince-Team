@@ -81,6 +81,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\AppStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GameBlackJackViews\BlackJackPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
