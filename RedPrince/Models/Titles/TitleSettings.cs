@@ -11,5 +11,7 @@ namespace RedPrince.Models.Titles
         public static string ChangeUserPass { get; } = "Change Username or Password";
 
         public static string ToggleSound { get; } = "Toggle Sound";
+        
+        public static string ToggleTheme { get; } = "Toggle Theme ";
     }
 }

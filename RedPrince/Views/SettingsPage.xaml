@@ -20,18 +20,38 @@
         <Button Text ="{Binding ChangeUserPass}"
                 Command = "{Binding ChangeUserPassClickedCommand}" />
 
-        <HorizontalStackLayout  HorizontalOptions="Start">
+        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
 
             <Label Text="{Binding ToggleSound}"
+                   VerticalOptions="Center"
                    VerticalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ToggleSoundClickedCommand}" />
                 </Label.GestureRecognizers>
             </Label>
 
-            <Switch IsToggled="{Binding IsOn}" 
+            <Switch IsToggled="{Binding IsSoundOn}" 
                     ThumbColor="Blue" 
                     OnColor="Green"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"/>
+
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+
+            <Label Text="{Binding ToggleTheme}"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleThemeClickedCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Switch IsToggled="{Binding Theme}" 
+                    ThumbColor="Blue" 
+                    OnColor="Green"
+                    VerticalOptions="Center"
                     HorizontalOptions="Center"/>
 
         </HorizontalStackLayout>
