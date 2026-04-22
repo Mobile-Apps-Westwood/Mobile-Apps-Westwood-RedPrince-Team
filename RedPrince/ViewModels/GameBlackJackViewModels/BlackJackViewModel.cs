@@ -50,7 +50,7 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 _wins = Preferences.Get("BJ_Wins", 0);
                 _losses = Preferences.Get("BJ_Losses", 0);
                 _pushes = Preferences.Get("BJ_Pushes", 0);
-                _playerBalance = Preferences.Get("BJ_Balance", 1000);
+                _playerBalance = Preferences.Get("user_balance", 1000);
             }
 
             // ── Observable Collections ────────────────────────────────────────────
@@ -105,7 +105,13 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             public int PlayerBalance
             {
                 get => _playerBalance;
-                private set => SetProperty(ref _playerBalance, value);
+                private set
+                {
+                    if (SetProperty(ref _playerBalance, value))
+                    {
+                        Preferences.Set("user_balance", _playerBalance);
+                    }
+                }
             }
 
             public int CurrentBet
@@ -164,9 +170,39 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 private set => SetProperty(ref _playerScore, value);
             }
 
-            public int Wins { get => _wins; private set => SetProperty(ref _wins, value); }
-            public int Losses { get => _losses; private set => SetProperty(ref _losses, value); }
-            public int Pushes { get => _pushes; private set => SetProperty(ref _pushes, value); }
+            public int Wins 
+            { 
+                get => _wins; 
+                private set
+                {
+                    if (SetProperty(ref _wins, value))
+                    {
+                        Preferences.Set("BJ_Wins", _wins);
+                    }
+                }
+            }
+            public int Losses 
+            { 
+                get => _losses; 
+                private set
+                {
+                    if (SetProperty(ref _losses, value))
+                    {
+                        Preferences.Set("BJ_Losses", _losses);
+                    }
+                }
+            }
+            public int Pushes 
+            { 
+                get => _pushes; 
+                private set
+                {
+                    if (SetProperty(ref _pushes, value))
+                    {
+                        Preferences.Set("BJ_Pushes", _pushes);
+                    }
+                }
+            }
 
             // ── Computed booleans ─────────────────────────────────────────────────
             public bool IsBettingPhase => _gameState == GameState.Idle || _gameState == GameState.Betting;

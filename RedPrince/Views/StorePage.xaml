@@ -35,9 +35,9 @@
 
         <VerticalStackLayout Spacing="5">
             <Button 
-                Text="{Binding Redeem10kLabel}"
-                Command="{Binding Redeem10kCoinsCommand}"
-                IsEnabled="{Binding Is10kEnabled}"
+                Text="{Binding Redeem100Label}"
+                Command="{Binding Redeem100CoinsCommand}"
+                IsEnabled="{Binding Is100Enabled}"
                 Padding="15"
                 CornerRadius="8"
                 FontSize="16"
@@ -45,7 +45,7 @@
                 BackgroundColor="#4CAF50"
                 TextColor="White" />
             <Label 
-                Text="{Binding Button10kStatus}"
+                Text="{Binding Button100Status}"
                 FontSize="12"
                 TextColor="#666666"
                 HorizontalOptions="Center" />
@@ -58,9 +58,9 @@
 
         <VerticalStackLayout Spacing="5">
             <Button 
-                Text="{Binding Redeem25kLabel}"
-                Command="{Binding Redeem25kCoinsCommand}"
-                IsEnabled="{Binding Is25kEnabled}"
+                Text="{Binding Redeem1kLabel}"
+                Command="{Binding Redeem1kCoinsCommand}"
+                IsEnabled="{Binding Is1kEnabled}"
                 Padding="15"
                 CornerRadius="8"
                 FontSize="16"
@@ -68,7 +68,7 @@
                 BackgroundColor="#2196F3"
                 TextColor="White" />
             <Label 
-                Text="{Binding Button25kStatus}"
+                Text="{Binding Button1kStatus}"
                 FontSize="12"
                 TextColor="#666666"
                 HorizontalOptions="Center" />
@@ -81,9 +81,9 @@
         
         <VerticalStackLayout Spacing="5">
             <Button 
-                Text="{Binding Redeem50kLabel}"
-                Command="{Binding Redeem50kCoinsCommand}"
-                IsEnabled="{Binding Is50kEnabled}"
+                Text="{Binding Redeem5kLabel}"
+                Command="{Binding Redeem5kCoinsCommand}"
+                IsEnabled="{Binding Is5kEnabled}"
                 Padding="15"
                 CornerRadius="8"
                 FontSize="16"
@@ -91,7 +91,7 @@
                 BackgroundColor="#FF9800"
                 TextColor="White" />
             <Label 
-                Text="{Binding Button50kStatus}"
+                Text="{Binding Button5kStatus}"
                 FontSize="12"
                 TextColor="#666666"
                 HorizontalOptions="Center" />
@@ -104,9 +104,9 @@
 
         <VerticalStackLayout Spacing="5">
             <Button 
-                Text="{Binding Redeem100kLabel}"
-                Command="{Binding Redeem100kCoinsCommand}"
-                IsEnabled="{Binding Is100kEnabled}"
+                Text="{Binding Redeem10kLabel}"
+                Command="{Binding Redeem10kCoinsCommand}"
+                IsEnabled="{Binding Is10kEnabled}"
                 Padding="15"
                 CornerRadius="8"
                 FontSize="16"
@@ -114,7 +114,7 @@
                 BackgroundColor="#9C27B0"
                 TextColor="White" />
             <Label 
-                Text="{Binding Button100kStatus}"
+                Text="{Binding Button10kStatus}"
                 FontSize="12"
                 TextColor="#666666"
                 HorizontalOptions="Center" />

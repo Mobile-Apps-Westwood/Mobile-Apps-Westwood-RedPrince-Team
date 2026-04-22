@@ -12,48 +12,48 @@ namespace RedPrince.ViewModels
         public string Title => TitleStore.Title;
         public string CurrentBalanceLabel => TitleStore.CurrentBalance;
         public string CoinsLabel => TitleStore.Coins;
+        public string Redeem100Label => TitleStore.Redeem100;
+        public string Redeem1kLabel => TitleStore.Redeem1k;
+        public string Redeem5kLabel => TitleStore.Redeem5k;
         public string Redeem10kLabel => TitleStore.Redeem10k;
-        public string Redeem25kLabel => TitleStore.Redeem25k;
-        public string Redeem50kLabel => TitleStore.Redeem50k;
-        public string Redeem100kLabel => TitleStore.Redeem100k;
 
         [ObservableProperty]
         private long userBalance;
 
         [ObservableProperty]
+        private bool is100Enabled;
+
+        [ObservableProperty]
+        private bool is1kEnabled;
+
+        [ObservableProperty]
+        private bool is5kEnabled;
+
+        [ObservableProperty]
         private bool is10kEnabled;
 
         [ObservableProperty]
-        private bool is25kEnabled;
+        private string button100Status = "Available";
 
         [ObservableProperty]
-        private bool is50kEnabled;
+        private string button1kStatus = "Available";
 
         [ObservableProperty]
-        private bool is100kEnabled;
+        private string button5kStatus = "Available";
 
         [ObservableProperty]
         private string button10kStatus = "Available";
 
-        [ObservableProperty]
-        private string button25kStatus = "Available";
-
-        [ObservableProperty]
-        private string button50kStatus = "Available";
-
-        [ObservableProperty]
-        private string button100kStatus = "Available";
-
+        private DateTime? lastRedeem100;
+        private DateTime? lastRedeem1k;
+        private DateTime? lastRedeem5k;
         private DateTime? lastRedeem10k;
-        private DateTime? lastRedeem25k;
-        private DateTime? lastRedeem50k;
-        private DateTime? lastRedeem100k;
 
         private const string KEY_BALANCE = "user_balance";
+        private const string KEY_LAST_100 = "last_redeem_100";
+        private const string KEY_LAST_1K = "last_redeem_1k";
+        private const string KEY_LAST_5K = "last_redeem_5k";
         private const string KEY_LAST_10K = "last_redeem_10k";
-        private const string KEY_LAST_25K = "last_redeem_25k";
-        private const string KEY_LAST_50K = "last_redeem_50k";
-        private const string KEY_LAST_100K = "last_redeem_100k";
 
         private System.Timers.Timer cooldownTimer;
 
@@ -72,32 +72,32 @@ namespace RedPrince.ViewModels
         {
             UserBalance = Preferences.Default.Get(KEY_BALANCE, 0L);
 
+            string last100 = Preferences.Default.Get(KEY_LAST_100, string.Empty);
+            string last1k = Preferences.Default.Get(KEY_LAST_1K, string.Empty);
+            string last5k = Preferences.Default.Get(KEY_LAST_5K, string.Empty);
             string last10k = Preferences.Default.Get(KEY_LAST_10K, string.Empty);
-            string last25k = Preferences.Default.Get(KEY_LAST_25K, string.Empty);
-            string last50k = Preferences.Default.Get(KEY_LAST_50K, string.Empty);
-            string last100k = Preferences.Default.Get(KEY_LAST_100K, string.Empty);
 
+            lastRedeem100 = string.IsNullOrEmpty(last100) ? null : DateTime.Parse(last100);
+            lastRedeem1k = string.IsNullOrEmpty(last1k) ? null : DateTime.Parse(last1k);
+            lastRedeem5k = string.IsNullOrEmpty(last5k) ? null : DateTime.Parse(last5k);
             lastRedeem10k = string.IsNullOrEmpty(last10k) ? null : DateTime.Parse(last10k);
-            lastRedeem25k = string.IsNullOrEmpty(last25k) ? null : DateTime.Parse(last25k);
-            lastRedeem50k = string.IsNullOrEmpty(last50k) ? null : DateTime.Parse(last50k);
-            lastRedeem100k = string.IsNullOrEmpty(last100k) ? null : DateTime.Parse(last100k);
         }
 
         private void SaveUserData()
         {
             Preferences.Default.Set(KEY_BALANCE, UserBalance);
+            Preferences.Default.Set(KEY_LAST_100, lastRedeem100?.ToString() ?? string.Empty);
+            Preferences.Default.Set(KEY_LAST_1K, lastRedeem1k?.ToString() ?? string.Empty);
+            Preferences.Default.Set(KEY_LAST_5K, lastRedeem5k?.ToString() ?? string.Empty);
             Preferences.Default.Set(KEY_LAST_10K, lastRedeem10k?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_25K, lastRedeem25k?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_50K, lastRedeem50k?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_100K, lastRedeem100k?.ToString() ?? string.Empty);
         }
 
         private void UpdateCooldownStatus()
         {
-            UpdateButtonStatus(lastRedeem10k, 5, button => Is10kEnabled = button, status => Button10kStatus = status);
-            UpdateButtonStatus(lastRedeem25k, 30, button => Is25kEnabled = button, status => Button25kStatus = status);
-            UpdateButtonStatus(lastRedeem50k, 60, button => Is50kEnabled = button, status => Button50kStatus = status);
-            UpdateButtonStatus(lastRedeem100k, 300, button => Is100kEnabled = button, status => Button100kStatus = status);
+            UpdateButtonStatus(lastRedeem100, 5, button => Is100Enabled = button, status => Button100Status = status);
+            UpdateButtonStatus(lastRedeem1k, 30, button => Is1kEnabled = button, status => Button1kStatus = status);
+            UpdateButtonStatus(lastRedeem5k, 60, button => Is5kEnabled = button, status => Button5kStatus = status);
+            UpdateButtonStatus(lastRedeem10k, 300, button => Is10kEnabled = button, status => Button10kStatus = status);
         }
 
         private void UpdateButtonStatus(DateTime? lastRedeemTime, int cooldownSeconds, Action<bool> setEnabled, Action<string> setStatus)
@@ -140,6 +140,51 @@ namespace RedPrince.ViewModels
         }
 
         [RelayCommand]
+        private async Task Redeem100Coins()
+        {
+            if (Is100Enabled)
+            {
+                UserBalance += 100;
+                lastRedeem100 = DateTime.Now;
+                SaveUserData();
+                UpdateCooldownStatus();
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                    Application.Current?.MainPage?.DisplayAlert("Success", "100 coins redeemed!", "OK")
+                );
+            }
+        }
+
+        [RelayCommand]
+        private async Task Redeem1kCoins()
+        {
+            if (Is1kEnabled)
+            {
+                UserBalance += 1000;
+                lastRedeem1k = DateTime.Now;
+                SaveUserData();
+                UpdateCooldownStatus();
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                    Application.Current?.MainPage?.DisplayAlert("Success", "1,000 coins redeemed!", "OK")
+                );
+            }
+        }
+
+        [RelayCommand]
+        private async Task Redeem5kCoins()
+        {
+            if (Is5kEnabled)
+            {
+                UserBalance += 5000;
+                lastRedeem5k = DateTime.Now;
+                SaveUserData();
+                UpdateCooldownStatus();
+                await MainThread.InvokeOnMainThreadAsync(() =>
+                    Application.Current?.MainPage?.DisplayAlert("Success", "5,000 coins redeemed!", "OK")
+                );
+            }
+        }
+
+        [RelayCommand]
         private async Task Redeem10kCoins()
         {
             if (Is10kEnabled)
@@ -150,51 +195,6 @@ namespace RedPrince.ViewModels
                 UpdateCooldownStatus();
                 await MainThread.InvokeOnMainThreadAsync(() =>
                     Application.Current?.MainPage?.DisplayAlert("Success", "10,000 coins redeemed!", "OK")
-                );
-            }
-        }
-
-        [RelayCommand]
-        private async Task Redeem25kCoins()
-        {
-            if (Is25kEnabled)
-            {
-                UserBalance += 25000;
-                lastRedeem25k = DateTime.Now;
-                SaveUserData();
-                UpdateCooldownStatus();
-                await MainThread.InvokeOnMainThreadAsync(() =>
-                    Application.Current?.MainPage?.DisplayAlert("Success", "25,000 coins redeemed!", "OK")
-                );
-            }
-        }
-
-        [RelayCommand]
-        private async Task Redeem50kCoins()
-        {
-            if (Is50kEnabled)
-            {
-                UserBalance += 50000;
-                lastRedeem50k = DateTime.Now;
-                SaveUserData();
-                UpdateCooldownStatus();
-                await MainThread.InvokeOnMainThreadAsync(() =>
-                    Application.Current?.MainPage?.DisplayAlert("Success", "50,000 coins redeemed!", "OK")
-                );
-            }
-        }
-
-        [RelayCommand]
-        private async Task Redeem100kCoins()
-        {
-            if (Is100kEnabled)
-            {
-                UserBalance += 100000;
-                lastRedeem100k = DateTime.Now;
-                SaveUserData();
-                UpdateCooldownStatus();
-                await MainThread.InvokeOnMainThreadAsync(() =>
-                    Application.Current?.MainPage?.DisplayAlert("Success", "100,000 coins redeemed!", "OK")
                 );
             }
         }
