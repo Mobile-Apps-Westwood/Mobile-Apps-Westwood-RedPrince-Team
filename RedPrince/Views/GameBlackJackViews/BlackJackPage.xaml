@@ -16,9 +16,9 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="Black" CornerRadius="8" Padding="10" HasShadow="True">
+                            <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="8" Padding="10" HasShadow="True">
                                 <VerticalStackLayout Spacing="5" WidthRequest="60" HeightRequest="90">
-                                    <Label Text="{Binding RankDisplay}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding RankDisplay}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Black"/>
                                     <Label Text="{Binding SuitSymbol}" FontSize="20" HorizontalTextAlignment="Center" TextColor="Black"/>
                                 </VerticalStackLayout>
                             </Frame>
@@ -43,9 +43,9 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="Black" CornerRadius="8" Padding="10" HasShadow="True">
+                            <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="8" Padding="10" HasShadow="True">
                                 <VerticalStackLayout Spacing="5" WidthRequest="60" HeightRequest="90">
-                                    <Label Text="{Binding RankDisplay}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding RankDisplay}" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Black"/>
                                     <Label Text="{Binding SuitSymbol}" FontSize="20" HorizontalTextAlignment="Center" TextColor="Black"/>
                                 </VerticalStackLayout>
                             </Frame>

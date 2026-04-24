@@ -18,6 +18,9 @@ namespace RedPrince.ViewModels
 
         public string Home => TitleMain.Home;
 
+        public ImageSource ImageSource => "redprince_logo.png";
+
+
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(HomeClickedCommand))]
         private string username;
