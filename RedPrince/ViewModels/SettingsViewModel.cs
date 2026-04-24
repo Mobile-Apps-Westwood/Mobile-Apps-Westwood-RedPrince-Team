@@ -18,7 +18,7 @@ namespace RedPrince.ViewModels
 
         public string ToggleSound => TitleSettings.ToggleSound;
 
-        public string ToggleTheme => TitleSettings.ToggleSound;
+        public string ToggleTheme => TitleSettings.ToggleTheme;
 
         [ObservableProperty]
         private bool isSoundOn;
@@ -29,7 +29,7 @@ namespace RedPrince.ViewModels
         public SettingsViewModel()
         {
             // initialize the theme switch from the current app theme
-            IsDarkTheme = Application.Current?.RequestedTheme == AppTheme.Dark;
+            Theme = Application.Current?.RequestedTheme == AppTheme.Dark;
             // default for sound switch
             IsSoundOn = false;
         }
@@ -51,10 +51,10 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task ToggleThemeClicked()
         {
-            IsDarkTheme = !IsDarkTheme;
+            Theme = !Theme;
         }
 
-        partial void OnIsDarkThemeChanged(bool value)
+        partial void OnThemeChanged(bool value)
         {
             Application.Current.UserAppTheme = value ? AppTheme.Dark : AppTheme.Light;
         }
