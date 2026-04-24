@@ -4,57 +4,41 @@
              x:Class="RedPrince.Views.SettingsPage"
              Title="{Binding Title}">
 
-    <ContentPage.Resources>
-        <Style TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#50C878" />
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="HeightRequest" Value="50"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Margin" Value="3"/>
-        </Style>
-    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="20">
 
-    <VerticalStackLayout>
-        
-        <Button Text ="{Binding ChangeUserPass}"
-                Command = "{Binding ChangeUserPassClickedCommand}" />
+            <Label Text="{Binding Title}" Style="{StaticResource SubHeadline}" />
 
-        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+            <Button Text="{Binding ChangeUserPass}"
+                    Command="{Binding ChangeUserPassClickedCommand}"
+                    Style="{StaticResource RedPrimaryButton}" />
 
-            <Label Text="{Binding ToggleSound}"
-                   VerticalOptions="Center"
-                   VerticalTextAlignment="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ToggleSoundClickedCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
+            <Border Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="0">
+                <VerticalStackLayout Padding="12" Spacing="8">
 
-            <Switch IsToggled="{Binding IsSoundOn}" 
-                    ThumbColor="Blue" 
-                    OnColor="Green"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
+                    <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                        <Label Text="{Binding ToggleSound}" VerticalOptions="Center" FontAttributes="Bold" />
+                        <Switch Grid.Column="1" IsToggled="{Binding IsSoundOn}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleSoundClickedCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
 
-        </HorizontalStackLayout>
+                    <BoxView HeightRequest="1" BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}" />
 
-        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+                    <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                        <Label Text="{Binding ToggleTheme}" VerticalOptions="Center" FontAttributes="Bold" />
+                        <Switch Grid.Column="1" IsToggled="{Binding Theme}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleThemeClickedCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
 
-            <Label Text="{Binding ToggleTheme}"
-                   VerticalOptions="Center"
-                   VerticalTextAlignment="Center">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ToggleThemeClickedCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
+                </VerticalStackLayout>
+            </Border>
 
-            <Switch IsToggled="{Binding Theme}" 
-                    ThumbColor="Blue" 
-                    OnColor="Green"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"/>
-
-        </HorizontalStackLayout>
-
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
