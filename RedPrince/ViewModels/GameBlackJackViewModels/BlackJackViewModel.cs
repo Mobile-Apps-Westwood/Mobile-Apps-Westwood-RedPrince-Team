@@ -1,12 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using RedPrince.Models.Titles;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Microsoft.Maui.Storage;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace RedPrince.ViewModels.GameBlackJackViewModels
 {
@@ -16,11 +14,9 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             private readonly Deck _deck = new();
             private readonly Hand _playerHand = new();
             private readonly Hand _dealerHand = new();
-            public string Title => TitleGames.BlackJack;
 
-
-        // ── Backing fields ────────────────────────────────────────────────────
-        private GameState _gameState = GameState.Idle;
+            // ── Backing fields ────────────────────────────────────────────────────
+            private GameState _gameState = GameState.Idle;
             private int _playerBalance = 1000;
             private int _currentBet = 0;
             private int _selectedChip = 25;
@@ -47,10 +43,6 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 NewGameCommand = new RelayCommand(DoNewRound, () => _gameState == GameState.RoundOver || _gameState == GameState.Idle);
                 AddChipCommand = new RelayCommand<int>(p => DoAddChip(p), _ => CanPlaceBet);
                 ClearBetCommand = new RelayCommand(DoClearBet, () => CanClearBet);
-                _wins = Preferences.Get("BJ_Wins", 0);
-                _losses = Preferences.Get("BJ_Losses", 0);
-                _pushes = Preferences.Get("BJ_Pushes", 0);
-                _playerBalance = Preferences.Get("user_balance", 1000);
             }
 
             // ── Observable Collections ────────────────────────────────────────────
@@ -105,13 +97,7 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             public int PlayerBalance
             {
                 get => _playerBalance;
-                private set
-                {
-                    if (SetProperty(ref _playerBalance, value))
-                    {
-                        Preferences.Set("user_balance", _playerBalance);
-                    }
-                }
+                private set => SetProperty(ref _playerBalance, value);
             }
 
             public int CurrentBet
@@ -170,39 +156,9 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 private set => SetProperty(ref _playerScore, value);
             }
 
-            public int Wins 
-            { 
-                get => _wins; 
-                private set
-                {
-                    if (SetProperty(ref _wins, value))
-                    {
-                        Preferences.Set("BJ_Wins", _wins);
-                    }
-                }
-            }
-            public int Losses 
-            { 
-                get => _losses; 
-                private set
-                {
-                    if (SetProperty(ref _losses, value))
-                    {
-                        Preferences.Set("BJ_Losses", _losses);
-                    }
-                }
-            }
-            public int Pushes 
-            { 
-                get => _pushes; 
-                private set
-                {
-                    if (SetProperty(ref _pushes, value))
-                    {
-                        Preferences.Set("BJ_Pushes", _pushes);
-                    }
-                }
-            }
+            public int Wins { get => _wins; private set => SetProperty(ref _wins, value); }
+            public int Losses { get => _losses; private set => SetProperty(ref _losses, value); }
+            public int Pushes { get => _pushes; private set => SetProperty(ref _pushes, value); }
 
             // ── Computed booleans ─────────────────────────────────────────────────
             public bool IsBettingPhase => _gameState == GameState.Idle || _gameState == GameState.Betting;
@@ -225,24 +181,10 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             private void DoAddChip(int amount)
             {
                 if (!CanPlaceBet) return;
-
-                // Max bet check (NEW)
-                if (CurrentBet + amount > 500)
-                {
-                    StatusMessage = "Max bet is $500!";
-                    return;
-                }
-
-                // Prevent invalid chip usage
-                if (_playerBalance < amount)
-                {
-                    StatusMessage = "Not enough balance for that chip!";
-                    return;
-                }
-
-                CurrentBet += amount;
-                PlayerBalance -= amount;
-
+                int add = Math.Min(amount, _playerBalance);
+                if (add <= 0) return;
+                CurrentBet += add;
+                PlayerBalance -= add;
                 GameState = GameState.Betting;
                 StatusMessage = $"Bet: ${CurrentBet}  |  Click Deal to play!";
             }
@@ -445,18 +387,8 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
 
             private void RevealDealerCard()
             {
-                // Reveal ALL UI cards
-                foreach (var cardVM in DealerCards)
-                {
-                    if (cardVM.IsFaceDown)
-                        cardVM.Reveal();
-                }
-
-                // Sync model cards
-                foreach (var card in _dealerHand.Cards)
-                {
-                    card.IsFaceDown = false;
-                }
+                var faceDown = DealerCards.FirstOrDefault(c => c.IsFaceDown);
+                faceDown?.Reveal();
             }
 
             private void UpdateScores()

@@ -44,11 +44,9 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
         public int Value => Rank switch
         {
             Rank.Jack or Rank.Queen or Rank.King => 10,
-            Rank.Ace => 1, // Ace is ALWAYS 1 here
+            Rank.Ace => 11,
             _ => (int)Rank
-        };      
-
-        
+        };
 
         public override string ToString() => $"{RankDisplay}{SuitSymbol}";
     }
