@@ -4,9 +4,9 @@ namespace RedPrince.Views;
 
 public partial class CreateAccountPage : ContentPage
 {
-	public CreateAccountPage()
+	public CreateAccountPage(CreateAccountViewModel viewModel)
 	{
 		InitializeComponent();
-        BindingContext = new CreateAccountViewModel();
-    }
+		BindingContext = viewModel;
+	}
 }

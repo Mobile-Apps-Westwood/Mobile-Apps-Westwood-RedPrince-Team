@@ -46,15 +46,26 @@ namespace RedPrince.ViewModels
             await Shell.Current.GoToAsync(nameof(CreateAccountPage));
         }
 
+        private readonly RedPrince.Services.DatabaseService _databaseService;
+
+        public MainViewModel(RedPrince.Services.DatabaseService databaseService)
+        {
+            _databaseService = databaseService;
+        }
+
         [RelayCommand(CanExecute = nameof(CanLogin))]
         private async Task HomeClicked()
         {
-            await Shell.Current.GoToAsync(nameof(HomePage));
-        }
-
-        public MainViewModel()
-        {
-
+            var user = await _databaseService.GetUserAsync(Username, Password);
+            if (user != null)
+            {
+                Preferences.Set("CurrentUser", user.Username);
+                await Shell.Current.GoToAsync(nameof(HomePage));
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Invalid username or password.", "OK");
+            }
         }
     }
 }
