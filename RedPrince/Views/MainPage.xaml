@@ -9,7 +9,7 @@
 
 		<StackLayout Spacing="5" HorizontalOptions="Center" Margin="0,0,0,20">
 
-			<Grid HorizontalOptions="Center">
+			<Grid HorizontalOptions="Center" TranslationX="5">
 				<Label Text="RedPrince"
 					   FontSize="42"
 					   FontAttributes="Bold"
@@ -32,6 +32,7 @@
 				   FontAttributes="Bold"
 				   HorizontalOptions="Center"
 				   CharacterSpacing="6"
+                   Margin="0,-25,0,0"
 				   TextColor="{AppThemeBinding Light=#424242, Dark=#BDBDBD}" />
             
         </StackLayout>

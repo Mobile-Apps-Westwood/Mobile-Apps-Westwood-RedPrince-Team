@@ -17,6 +17,8 @@ namespace RedPrince.ViewModels
         public string StoreButton => TitleHome.StoreButton;
         public string SettingsButton => TitleHome.SettingsButton;
 
+        public string ImageSource => "redprince_logo.png";
+
         [RelayCommand]
         private async Task GamesButtonClicked()
         {

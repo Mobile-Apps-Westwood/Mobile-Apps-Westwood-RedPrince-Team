@@ -41,5 +41,11 @@ namespace RedPrince.Services
             await InitAsync();
             return await _database.UpdateAsync(user);
         }
+
+        public async Task<List<User>> GetAllUsersAsync()
+        {
+            await InitAsync();
+            return await _database.Table<User>().OrderByDescending(u => u.Money).ToListAsync();
+        }
     }
 }

@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:RedPrince.Models"
              x:Class="RedPrince.Views.LeaderboardPage"
              Title="{Binding Title}">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout Padding="20" Spacing="12">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+            <Label Text="Leaderboard" FontSize="40" FontAttributes="Bold" HorizontalOptions="Center" TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" />
+            <Label Text="Top players by balance" FontSize="16" HorizontalOptions="Center" TextColor="{AppThemeBinding Light=#777777, Dark=#BDBDBD}" />
+        </StackLayout>
+
+        <Frame CornerRadius="12" Padding="8" HasShadow="False" BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#151515}" BorderColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}">
+            <CollectionView ItemsSource="{Binding Users}" SelectionMode="None" x:Name="LeaderboardCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:User">
+                        <Grid Padding="10" ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto">
+                            <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center" Margin="12,0,0,0">
+                                <Label Text="{Binding Username}" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+                                <Label Text="Player" FontSize="12" TextColor="{AppThemeBinding Light=#777777, Dark=#BDBDBD}" />
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
+                                <Label Text="{Binding Money, StringFormat='${0:N0}'}" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" HorizontalOptions="End" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="20" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="No players yet" FontSize="14" TextColor="{AppThemeBinding Light=#777777, Dark=#BDBDBD}" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Frame>
+    </StackLayout>
 </ContentPage>
