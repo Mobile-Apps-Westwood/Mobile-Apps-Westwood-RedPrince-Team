@@ -20,7 +20,12 @@
 
                     <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
                         <Label Text="{Binding ToggleSound}" VerticalOptions="Center" FontAttributes="Bold" />
-                        <Switch Grid.Column="1" IsToggled="{Binding IsSoundOn}" VerticalOptions="Center" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding IsSoundOn}"
+                                OffColor="#FAF9F6"
+                                VerticalOptions="Center"
+                                OnColor="#4CAF50"
+                                ThumbColor="DarkGray" />
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ToggleSoundClickedCommand}" />
                         </Grid.GestureRecognizers>
@@ -30,15 +35,16 @@
 
                     <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
                         <Label Text="{Binding ToggleTheme}" VerticalOptions="Center" FontAttributes="Bold" />
-                        <Switch Grid.Column="1" IsToggled="{Binding Theme}" VerticalOptions="Center" />
+                        <Switch Grid.Column="1"
+                                IsToggled="{Binding Theme}"
+                                VerticalOptions="Center"
+                                ThumbColor="DarkGray" />
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ToggleThemeClickedCommand}" />
                         </Grid.GestureRecognizers>
                     </Grid>
-
                 </VerticalStackLayout>
             </Border>
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
