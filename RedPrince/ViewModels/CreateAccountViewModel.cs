@@ -36,12 +36,6 @@ namespace RedPrince.ViewModels
             _databaseService = databaseService;
         }
 
-        partial void OnPasswordChanged(string value)
-        {
-            // Validation moved to separate method called on unfocus
-            // No longer validates on every character change
-        }
-
         [RelayCommand]
         public async Task ValidatePasswordEntry()
         {
@@ -54,14 +48,12 @@ namespace RedPrince.ViewModels
 
             if (!result.IsValid)
             {
-                // Build error message from validation errors only
                 string errorMessage = string.Empty;
                 foreach (var error in result.Errors)
                 {
                     errorMessage += "✗ " + error + "\n";
                 }
 
-                // Show error popup
                 await App.Current.MainPage.DisplayAlert(
                     "Password Requirements Error",
                     errorMessage.Trim(),
