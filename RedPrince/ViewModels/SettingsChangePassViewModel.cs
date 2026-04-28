@@ -6,9 +6,8 @@ using System.Text;
 
 namespace RedPrince.ViewModels
 {
-    public partial class ChangeUserPassViewModel : ObservableObject
+    public partial class SettingsChangePassViewModel : ObservableObject
     {
-        public string Title => TitleSettings.ChangeUserPass;
-
+        public string Title => TitleSettings.ChangePass;
     }
 }

@@ -8,7 +8,9 @@ namespace RedPrince.Models.Titles
     {
         public static string Title { get; } = "Settings";
 
-        public static string ChangeUserPass { get; } = "Change Username or Password";
+        public static string ChangeUser { get; } = "Change Your Username";
+
+        public static string ChangePass { get; } = "Change Your Password";
 
         public static string ToggleSound { get; } = "Toggle Sound";
         

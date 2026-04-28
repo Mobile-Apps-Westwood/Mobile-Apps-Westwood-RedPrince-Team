@@ -25,8 +25,11 @@ namespace RedPrince
             Routing.RegisterRoute(nameof(GamesPage), typeof(GamesPage));
             Routing.RegisterRoute(nameof(LeaderboardPage), typeof(LeaderboardPage));
             Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));
+
+            //Settings
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
-            Routing.RegisterRoute(nameof(SettingsChangeUserPassPage), typeof(SettingsChangeUserPassPage));
+            Routing.RegisterRoute(nameof(SettingsChangeUserPage), typeof(SettingsChangeUserPage));
+            Routing.RegisterRoute(nameof(SettingsChangePassPage), typeof(SettingsChangePassPage));
             Routing.RegisterRoute(nameof(BlackJackPage), typeof(BlackJackPage));
 
             Routing.RegisterRoute(nameof(StorePage), typeof(StorePage));

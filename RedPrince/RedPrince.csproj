@@ -104,7 +104,10 @@
 	  <MauiXaml Update="Views\HintPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PasswordErrorPage.xaml">
+	  <MauiXaml Update="Views\SettingsChangePassPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsChangeUserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StorePage.xaml">

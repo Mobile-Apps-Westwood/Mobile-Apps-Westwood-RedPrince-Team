@@ -14,7 +14,9 @@ namespace RedPrince.ViewModels
     {
         public string Title => TitleSettings.Title;
 
-        public string ChangeUserPass => TitleSettings.ChangeUserPass;
+        public string ChangeUser => TitleSettings.ChangeUser;
+
+        public string ChangePass => TitleSettings.ChangePass;
 
         public string ToggleSound => TitleSettings.ToggleSound;
 
@@ -37,9 +39,15 @@ namespace RedPrince.ViewModels
 
 
         [RelayCommand]
-        private async Task ChangeUserPassClicked()
+        private async Task ChangeUserClicked()
         {
-            await Shell.Current.GoToAsync(nameof(SettingsChangeUserPassPage));
+            await Shell.Current.GoToAsync(nameof(SettingsChangeUserPage));
+        }
+
+        [RelayCommand]
+        private async Task ChangePassClicked()
+        {
+            await Shell.Current.GoToAsync(nameof(SettingsChangePassPage));
         }
 
         [RelayCommand]

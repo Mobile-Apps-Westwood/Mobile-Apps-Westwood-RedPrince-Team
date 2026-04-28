@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RedPrince.Views.SettingsChangeUserPage"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="16">
+
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="Current Username" Style="{StaticResource RedInputEntry}" Text="{Binding Username}" />
+            </Border>
+
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="Current Password" IsPassword="True" Style="{StaticResource RedInputEntry}" Text="{Binding Password}" />
+            </Border>
+
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="New Username" Style="{StaticResource RedInputEntry}" Text="{Binding NewUsername}" />
+            </Border>
+
+            <Button Text="Submit" Style="{StaticResource RedPrimaryButton}" Command="{Binding SubmitChangeUserCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
