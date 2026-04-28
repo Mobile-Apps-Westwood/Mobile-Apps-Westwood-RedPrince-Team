@@ -1,38 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RedPrince.Views.HintPage"
-             Title="{Binding Title}">
-    
-    <VerticalStackLayout>
-        
-        <Grid Margin ="5, 20, 5, 5" Padding="5" RowSpacing="6" ColumnSpacing="12">
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="RedPrince.Views.HintPage"
+			 Title="{Binding Title}"
+			 BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height = "Auto"/>
-                <RowDefinition Height = "Auto"/>
-                <RowDefinition Height = "Auto"/>
-            </Grid.RowDefinitions>
+	<ScrollView>
+		<VerticalStackLayout Padding="20" Spacing="15">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*"/>
-                <ColumnDefinition Width = "*"/>
-            </Grid.ColumnDefinitions>
+			<!-- Instructions Label -->
+			<Label 
+				Text="Enter your username to retrieve your account hint"
+				FontSize="16"
+				TextColor="{AppThemeBinding Light=#424242, Dark=#BDBDBD}"
+				HorizontalOptions="Center"
+				Margin="0,20,0,0" />
 
-            <Button Grid.Row= "0"
-				    Grid.Column= "0"
-                    Grid.ColumnSpan="2"
-				    Text ="{Binding Hint}"
-				    Command="{Binding HintClickedCommand}" />
+			<!-- Username Entry -->
+			<Border Style="{StaticResource RedInputBorder}">
+				<Entry 
+					x:Name="UsernameEntry"
+					Style="{StaticResource RedInputEntry}"
+					Placeholder="Username"
+					Text="{Binding Username}"
+					PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+					TextColor="{AppThemeBinding Light=#333333, Dark=White}"
+					FontSize="16" />
+			</Border>
 
-            <Button Grid.Row= "0"
-				    Grid.Column= "1"
-                    Grid.ColumnSpan="2"
-				    Text ="{Binding Submit}"
-				    Command="{Binding SubmitClickedCommand}" />
+			<!-- Search Button -->
+			<Button 
+				Text="Search Hint"
+				Style="{StaticResource RedPrimaryButton}"
+				Command="{Binding SearchCommand}"
+				Margin="0,10,0,0" />
 
-        </Grid>
-        
-    </VerticalStackLayout>
-    
+			<!-- Loading Indicator -->
+			<ActivityIndicator 
+				IsRunning="{Binding IsLoading}"
+				IsVisible="{Binding IsLoading}"
+				Color="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}"
+				Margin="0,10,0,0" />
+
+			<!-- Error Message -->
+			<Label 
+				Text="{Binding ErrorMessage}"
+				IsVisible="{Binding ErrorMessage, Converter={StaticResource StringNotNullOrEmptyConverter}}"
+				FontSize="14"
+				TextColor="#E53935"
+				Margin="0,10,0,0"
+				LineBreakMode="WordWrap" />
+
+			<!-- Hint Display Section -->
+			<StackLayout IsVisible="{Binding ShowHint}" Spacing="10" Margin="0,20,0,0">
+
+				<!-- Hint Title -->
+				<Label 
+					Text="Your Account Hint:"
+					FontSize="16"
+					FontAttributes="Bold"
+					TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+				<!-- Hint Box -->
+				<Border 
+					Padding="15"
+					Margin="0,5,0,0"
+					StrokeThickness="2"
+					Stroke="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}"
+					StrokeShape="RoundRectangle 10,10,10,10"
+					BackgroundColor="{AppThemeBinding Light=#FFF3E0, Dark=#3E2723}">
+					<Label 
+						Text="{Binding HintText}"
+						FontSize="15"
+						TextColor="{AppThemeBinding Light=#333333, Dark=White}"
+						LineBreakMode="WordWrap" />
+				</Border>
+
+				<!-- Clear Button -->
+				<Button 
+					Text="Clear"
+					Style="{StaticResource RedSecondaryButton}"
+					Command="{Binding ClearHintCommand}"
+					Margin="0,15,0,0" />
+
+			</StackLayout>
+
+		</VerticalStackLayout>
+	</ScrollView>
+
 </ContentPage>
