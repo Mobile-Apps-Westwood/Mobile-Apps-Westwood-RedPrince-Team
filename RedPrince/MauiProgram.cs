@@ -25,6 +25,12 @@ namespace RedPrince
             builder.Services.AddTransient<Views.CreateAccountPage>();
             builder.Services.AddTransient<ViewModels.CreateAccountViewModel>();
 
+            builder.Services.AddTransient<Views.StorePage>();
+            builder.Services.AddTransient<ViewModels.StoreViewModel>();
+
+            builder.Services.AddTransient<Views.GameBlackJackViews.BlackJackPage>();
+            builder.Services.AddTransient<ViewModels.GameBlackJackViewModels.GameViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -55,10 +55,16 @@ namespace RedPrince.ViewModels
         private const string KEY_LAST_5K = "last_redeem_5k";
         private const string KEY_LAST_10K = "last_redeem_10k";
 
+        private readonly RedPrince.Services.DatabaseService _databaseService;
+        private string _currentUsername;
+
         private System.Timers.Timer cooldownTimer;
 
-        public StoreViewModel()
+        public StoreViewModel(RedPrince.Services.DatabaseService databaseService)
         {
+            _databaseService = databaseService;
+            _currentUsername = Preferences.Get("CurrentUser", string.Empty);
+
             LoadUserData();
             UpdateCooldownStatus();
 
@@ -70,12 +76,35 @@ namespace RedPrince.ViewModels
 
         private void LoadUserData()
         {
-            UserBalance = Preferences.Default.Get(KEY_BALANCE, 0L);
+            // Load balance from DB if user logged in, otherwise fallback to preferences
+            if (!string.IsNullOrEmpty(_currentUsername) && _databaseService != null)
+            {
+                try
+                {
+                    var user = Task.Run(() => _databaseService.GetUserByUsernameAsync(_currentUsername)).Result;
+                    if (user != null)
+                    {
+                        UserBalance = user.Money;
+                    }
+                    else
+                    {
+                        UserBalance = Preferences.Default.Get(KEY_BALANCE, 0L);
+                    }
+                }
+                catch
+                {
+                    UserBalance = Preferences.Default.Get(KEY_BALANCE, 0L);
+                }
+            }
+            else
+            {
+                UserBalance = Preferences.Default.Get(KEY_BALANCE, 0L);
+            }
 
-            string last100 = Preferences.Default.Get(KEY_LAST_100, string.Empty);
-            string last1k = Preferences.Default.Get(KEY_LAST_1K, string.Empty);
-            string last5k = Preferences.Default.Get(KEY_LAST_5K, string.Empty);
-            string last10k = Preferences.Default.Get(KEY_LAST_10K, string.Empty);
+            string last100 = Preferences.Default.Get(GetPrefKey(KEY_LAST_100), string.Empty);
+            string last1k = Preferences.Default.Get(GetPrefKey(KEY_LAST_1K), string.Empty);
+            string last5k = Preferences.Default.Get(GetPrefKey(KEY_LAST_5K), string.Empty);
+            string last10k = Preferences.Default.Get(GetPrefKey(KEY_LAST_10K), string.Empty);
 
             lastRedeem100 = string.IsNullOrEmpty(last100) ? null : DateTime.Parse(last100);
             lastRedeem1k = string.IsNullOrEmpty(last1k) ? null : DateTime.Parse(last1k);
@@ -85,11 +114,38 @@ namespace RedPrince.ViewModels
 
         private void SaveUserData()
         {
+            // Save cooldowns in preferences (per user)
+            Preferences.Default.Set(GetPrefKey(KEY_LAST_100), lastRedeem100?.ToString() ?? string.Empty);
+            Preferences.Default.Set(GetPrefKey(KEY_LAST_1K), lastRedeem1k?.ToString() ?? string.Empty);
+            Preferences.Default.Set(GetPrefKey(KEY_LAST_5K), lastRedeem5k?.ToString() ?? string.Empty);
+            Preferences.Default.Set(GetPrefKey(KEY_LAST_10K), lastRedeem10k?.ToString() ?? string.Empty);
+
+            // Persist balance to DB if user available, otherwise save to preferences
+            if (!string.IsNullOrEmpty(_currentUsername) && _databaseService != null)
+            {
+                try
+                {
+                    var user = Task.Run(() => _databaseService.GetUserByUsernameAsync(_currentUsername)).Result;
+                    if (user != null)
+                    {
+                        user.Money = (int)UserBalance;
+                        Task.Run(() => _databaseService.UpdateUserAsync(user)).Wait();
+                        return;
+                    }
+                }
+                catch
+                {
+                    // ignore and fallback to prefs
+                }
+            }
+
             Preferences.Default.Set(KEY_BALANCE, UserBalance);
-            Preferences.Default.Set(KEY_LAST_100, lastRedeem100?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_1K, lastRedeem1k?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_5K, lastRedeem5k?.ToString() ?? string.Empty);
-            Preferences.Default.Set(KEY_LAST_10K, lastRedeem10k?.ToString() ?? string.Empty);
+        }
+
+        private string GetPrefKey(string key)
+        {
+            if (string.IsNullOrEmpty(_currentUsername)) return key;
+            return $"{_currentUsername}_{key}";
         }
 
         private void UpdateCooldownStatus()
@@ -146,7 +202,7 @@ namespace RedPrince.ViewModels
             {
                 UserBalance += 100;
                 lastRedeem100 = DateTime.Now;
-                SaveUserData();
+                SaveUserData(); // Save user data after redeeming coins
                 UpdateCooldownStatus();
                 await MainThread.InvokeOnMainThreadAsync(() =>
                     Application.Current?.MainPage?.DisplayAlert("Success", "100 coins redeemed!", "OK")
@@ -157,7 +213,7 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task Redeem1kCoins()
         {
-            if (Is1kEnabled)
+            if (Is1kEnabled && UserBalance >= 1000)
             {
                 UserBalance += 1000;
                 lastRedeem1k = DateTime.Now;

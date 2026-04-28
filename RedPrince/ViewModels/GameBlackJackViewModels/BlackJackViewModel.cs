@@ -17,7 +17,9 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
 
             // ── Backing fields ────────────────────────────────────────────────────
             private GameState _gameState = GameState.Idle;
-            private int _playerBalance = 1000;
+        private int _playerBalance = 1000;
+        private readonly RedPrince.Services.DatabaseService _databaseService;
+        private string _currentUsername;
             private int _currentBet = 0;
             private int _selectedChip = 25;
             private string _statusMessage = "Place your bet to start!";
@@ -31,8 +33,19 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             private int _pushes = 0;
 
             // ── Constructor ───────────────────────────────────────────────────────
-            public GameViewModel()
+            public GameViewModel(RedPrince.Services.DatabaseService databaseService)
             {
+                _databaseService = databaseService;
+                // load current user balance if logged in
+                _currentUsername = Preferences.Get("CurrentUser", string.Empty);
+                if (!string.IsNullOrEmpty(_currentUsername))
+                {
+                    var user = Task.Run(() => _databaseService.GetUserByUsernameAsync(_currentUsername)).Result;
+                    if (user != null)
+                    {
+                        _playerBalance = user.Money;
+                    }
+                }
                 PlayerCards = new ObservableCollection<CardViewModel>();
                 DealerCards = new ObservableCollection<CardViewModel>();
 
@@ -185,6 +198,8 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 if (add <= 0) return;
                 CurrentBet += add;
                 PlayerBalance -= add;
+                // persist change
+                SaveBalanceToDb();
                 GameState = GameState.Betting;
                 StatusMessage = $"Bet: ${CurrentBet}  |  Click Deal to play!";
             }
@@ -193,6 +208,8 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             {
                 PlayerBalance += CurrentBet;
                 CurrentBet = 0;
+                // persist change
+                SaveBalanceToDb();
                 GameState = GameState.Idle;
                 StatusMessage = "Place your bet to start!";
             }
@@ -272,6 +289,9 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 AddCardToPlayer(_deck.Deal());
                 UpdateScores();
 
+                // persist change
+                SaveBalanceToDb();
+
                 if (_playerHand.IsBust)
                 {
                     RevealDealerCard();
@@ -289,6 +309,7 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 {
                     PlayerBalance = 1000;
                     StatusMessage = "Balance refilled to $1,000!";
+                    SaveBalanceToDb();
                 }
 
                 _playerHand.Clear();
@@ -370,6 +391,27 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 ResultVisible = true;
                 StatusMessage = gameResult.Message;
                 GameState = GameState.RoundOver;
+
+                // persist final balance after round
+                SaveBalanceToDb();
+            }
+
+            private void SaveBalanceToDb()
+            {
+                if (string.IsNullOrEmpty(_currentUsername) || _databaseService == null) return;
+                try
+                {
+                    var user = Task.Run(() => _databaseService.GetUserByUsernameAsync(_currentUsername)).Result;
+                    if (user != null)
+                    {
+                        user.Money = PlayerBalance;
+                        Task.Run(() => _databaseService.UpdateUserAsync(user)).Wait();
+                    }
+                }
+                catch
+                {
+                    // ignore DB write failures for now
+                }
             }
 
             // ── Helpers ───────────────────────────────────────────────────────────

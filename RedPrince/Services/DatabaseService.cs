@@ -29,6 +29,7 @@ namespace RedPrince.Services
             return await _database.Table<User>().Where(u => u.Username == username).FirstOrDefaultAsync();
         }
 
+
         public async Task<int> CreateUserAsync(User user)
         {
             await InitAsync();

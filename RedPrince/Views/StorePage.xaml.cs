@@ -4,9 +4,9 @@ namespace RedPrince.Views;
 
 public partial class StorePage : ContentPage
 {
-	public StorePage()
+	public StorePage(StoreViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = new StoreViewModel();
+		BindingContext = viewModel;
 	}
 }

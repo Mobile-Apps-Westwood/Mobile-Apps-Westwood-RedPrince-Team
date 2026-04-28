@@ -4,10 +4,10 @@ using RedPrince.ViewModels.GameBlackJackViewModels;
 
 public partial class BlackJackPage : ContentPage
 {
-    public BlackJackPage()
+    public BlackJackPage(GameViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new GameViewModel();
+        BindingContext = viewModel;
     }
 }
 
