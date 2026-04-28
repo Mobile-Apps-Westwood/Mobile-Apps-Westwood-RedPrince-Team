@@ -2,39 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedPrince.Views.CreateAccountPage"
-             Title="{Binding Title}">
-    
-    <VerticalStackLayout Spacing="15" Margin="20" VerticalOptions="Center">
-        <Label Text="Create Account"
-               FontSize="32"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               Margin="0,0,0,30"
-               TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" />
+             Title="{Binding Title}"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=#121212}">
 
-        <Border Style="{StaticResource RedInputBorder}">
-            <Entry Placeholder="Username"
-                   Text="{Binding Username}"
-                   Style="{StaticResource RedInputEntry}" />
-        </Border>
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Margin="20" VerticalOptions="Start" Padding="0,20,0,0">
+            <Label Text="Create Account"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,30"
+                   TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" />
 
-        <Border Style="{StaticResource RedInputBorder}">
-            <Entry Placeholder="Password"
-                   Text="{Binding Password}"
-                   IsPassword="True"
-                   Style="{StaticResource RedInputEntry}" />
-        </Border>
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="Username"
+                       Text="{Binding Username}"
+                       Style="{StaticResource RedInputEntry}"
+                       PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+                       TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+            </Border>
 
-        <Border Style="{StaticResource RedInputBorder}">
-            <Entry Placeholder="Password Hint"
-                   Text="{Binding HintEntry}"
-                   Style="{StaticResource RedInputEntry}" />
-        </Border>
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="Password"
+                       Text="{Binding Password}"
+                       IsPassword="True"
+                       Style="{StaticResource RedInputEntry}"
+                       PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+                       TextColor="{AppThemeBinding Light=#333333, Dark=White}"
+                       Unfocused="OnPasswordUnfocused" />
+            </Border>
+            
+            <Border Style="{StaticResource RedInputBorder}">
+                <Entry Placeholder="Password Hint"
+                       Text="{Binding HintEntry}"
+                       Style="{StaticResource RedInputEntry}"
+                       PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+                       TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+            </Border>
 
-        <Button Text="Create Account"
-                Command="{Binding CreateCommand}"
-                Margin="0,20,0,0"
-                Style="{StaticResource RedPrimaryButton}" />
-    </VerticalStackLayout>
-    
+            <Button Text="Create Account"
+                    Command="{Binding CreateCommand}"
+                    Margin="0,20,0,0"
+                    Style="{StaticResource RedPrimaryButton}" />
+
+            <Label Text="Password will be securely stored."
+                   FontSize="11"
+                   TextColor="{AppThemeBinding Light=#666666, Dark=#999999}"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
