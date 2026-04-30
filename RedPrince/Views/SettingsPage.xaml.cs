@@ -4,9 +4,9 @@ namespace RedPrince.Views;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+	public SettingsPage(SettingsViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = new SettingsViewModel();
+		BindingContext = viewModel;
 	}
 }

@@ -33,6 +33,15 @@ namespace RedPrince
             builder.Services.AddTransient<Views.LeaderboardPage>();
             builder.Services.AddTransient<ViewModels.LeaderboardViewModel>();
 
+            builder.Services.AddTransient<Views.SettingsPage>();
+            builder.Services.AddTransient<ViewModels.SettingsViewModel>();
+
+            builder.Services.AddTransient<Views.SettingsChangeUserPage>();
+            builder.Services.AddTransient<ViewModels.SettingsChangeUserViewModel>();
+
+            builder.Services.AddTransient<Views.SettingsChangePassPage>();
+            builder.Services.AddTransient<ViewModels.SettingsChangePassViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -28,15 +28,16 @@ namespace RedPrince.ViewModels
         [ObservableProperty]
         private bool theme;
 
-        public SettingsViewModel()
+        private readonly Services.DatabaseService _databaseService;
+
+        public SettingsViewModel(Services.DatabaseService databaseService)
         {
+            _databaseService = databaseService;
             // initialize the theme switch from the current app theme
             Theme = Application.Current?.RequestedTheme == AppTheme.Dark;
             // default for sound switch
             IsSoundOn = false;
         }
-
-
 
         [RelayCommand]
         private async Task ChangeUserClicked()

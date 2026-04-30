@@ -4,9 +4,9 @@ namespace RedPrince.Views;
 
 public partial class SettingsChangeUserPage : ContentPage
 {
-	public SettingsChangeUserPage()
+	public SettingsChangeUserPage(SettingsChangeUserViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = new SettingsChangeUserViewModel();
-    }
+		BindingContext = viewModel;
+	}
 }
