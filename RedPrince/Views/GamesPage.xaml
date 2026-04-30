@@ -3,19 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedPrince.Views.GamesPage"
              Title="{Binding Title}">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
-        <Button 
-            Text="{Binding BlackJackPage}" 
-            FontSize="24"
-            HeightRequest="60"
-            CornerRadius="8"
-            Command="{Binding BlackJackPageClickedCommand}"/>
-        
-    </VerticalStackLayout>
-    
+    <ScrollView>
+        <VerticalStackLayout Spacing="30" Padding="20,40,20,20">
+
+            <StackLayout Spacing="5" HorizontalOptions="Center" Margin="0,0,0,20">
+
+                <Grid HorizontalOptions="Center" TranslationX="5">
+                    <Label Text="RedPrince"
+					   FontSize="42"
+					   FontAttributes="Bold"
+					   HorizontalOptions="Center"
+					   Margin="0,15,20,0"
+					   TextColor="{AppThemeBinding Light=#D32F2F, Dark=#EF5350}" />
+
+                    <Image Source="{Binding ImageSource}"
+					   Aspect="AspectFit"
+					   HeightRequest="100"
+					   WidthRequest="100"
+					   HorizontalOptions="End"
+					   VerticalOptions="Start"
+					   TranslationX="35"
+                       TranslationY="-35"/>
+                </Grid>
+
+                <Label Text="CASINO"
+				   FontSize="18"
+				   FontAttributes="Bold"
+				   HorizontalOptions="Center"
+				   CharacterSpacing="6"
+                   Margin="0,-25,0,0"
+				   TextColor="{AppThemeBinding Light=#424242, Dark=#BDBDBD}" />
+
+            </StackLayout>
+
+            <Grid RowSpacing="20" ColumnSpacing="20" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="140" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0"
+                        Text="{Binding BlackJackPage}"
+                        Command="{Binding BlackJackPageClickedCommand}"
+                        Style="{StaticResource HomeButton}" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Text="{Binding BaccaratPage}"
+                        Command="{Binding BaccaratPageClickedCommand}"
+                        Style="{StaticResource HomeButton}" />
+                
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

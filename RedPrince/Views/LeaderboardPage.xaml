@@ -10,7 +10,7 @@
             <Label Text="Top players by balance" FontSize="16" HorizontalOptions="Center" TextColor="{AppThemeBinding Light=#777777, Dark=#BDBDBD}" />
         </StackLayout>
 
-        <Frame CornerRadius="12" Padding="8" HasShadow="False" BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#151515}" BorderColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}">
+        <Frame CornerRadius="12" Padding="8" HasShadow="False" BackgroundColor="{AppThemeBinding Light=#f0f0f0, Dark=#151515}" BorderColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}">
             <CollectionView ItemsSource="{Binding Users}" SelectionMode="None" x:Name="LeaderboardCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:User">

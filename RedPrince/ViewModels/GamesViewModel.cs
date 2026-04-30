@@ -15,6 +15,8 @@ namespace RedPrince.ViewModels
 
         public string BlackJackPage => TitleGames.BlackJack;
 
+        public string ImageSource => "redprince_logo.png";
+
         [RelayCommand]
         private async Task  BlackJackPageClicked()
         {

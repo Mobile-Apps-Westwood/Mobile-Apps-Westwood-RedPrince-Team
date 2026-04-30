@@ -54,7 +54,7 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
                 StandCommand = new RelayCommand(DoStand, () => CanStand);
                 DoubleDownCommand = new RelayCommand(DoDoubleDown, () => CanDoubleDown);
                 NewGameCommand = new RelayCommand(DoNewRound, () => _gameState == GameState.RoundOver || _gameState == GameState.Idle);
-                AddChipCommand = new RelayCommand<int>(p => DoAddChip(p), _ => CanPlaceBet);
+                AddChipCommand = new RelayCommand<string>(p => { if (int.TryParse(p, out int val)) DoAddChip(val); }, _ => CanPlaceBet);
                 ClearBetCommand = new RelayCommand(DoClearBet, () => CanClearBet);
             }
 
