@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 using System.Text;
 using RedPrince.Views.GameBlackJackViews;
+using RedPrince.Views.GameBaccaratViews;
 
 namespace RedPrince.ViewModels
 {
@@ -15,12 +16,20 @@ namespace RedPrince.ViewModels
 
         public string BlackJackPage => TitleGames.BlackJack;
 
+        public string BaccaratPage => TitleGames.Baccarat;
+
         public string ImageSource => "redprince_logo.png";
 
         [RelayCommand]
         private async Task  BlackJackPageClicked()
         {
-            await Shell.Current.GoToAsync(nameof(BlackJackPage));
+            await Shell.Current.GoToAsync(nameof(RedPrince.Views.GameBlackJackViews.BlackJackPage));
+        }
+
+        [RelayCommand]
+        private async Task BaccaratPageClicked()
+        {
+            await Shell.Current.GoToAsync(nameof(BaccaratPage));
         }
     }
 }

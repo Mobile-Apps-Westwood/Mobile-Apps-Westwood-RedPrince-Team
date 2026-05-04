@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using RedPrince.Models.Titles;
+using RedPrince.Services;
 using System.Threading.Tasks;
 
 namespace RedPrince.ViewModels
@@ -41,6 +42,22 @@ namespace RedPrince.ViewModels
             if (NewPassword != ConfirmNewPassword)
             {
                 await Shell.Current.DisplayAlert("Error", "New passwords do not match.", "OK");
+                return;
+            }
+
+            var validationResult = PasswordValidator.ValidatePassword(NewPassword);
+            if (!validationResult.IsValid)
+            {
+                string errorMessage = string.Empty;
+                foreach (var error in validationResult.Errors)
+                {
+                    errorMessage += "✗ " + error + "\n";
+                }
+
+                await Shell.Current.DisplayAlert(
+                    "Password Requirements Error",
+                    errorMessage.Trim(),
+                    "OK");
                 return;
             }
 

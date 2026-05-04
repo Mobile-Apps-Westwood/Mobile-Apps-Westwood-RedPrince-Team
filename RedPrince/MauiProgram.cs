@@ -30,6 +30,10 @@ namespace RedPrince
 
             builder.Services.AddTransient<Views.GameBlackJackViews.BlackJackPage>();
             builder.Services.AddTransient<ViewModels.GameBlackJackViewModels.GameViewModel>();
+
+            builder.Services.AddTransient<Views.GameBaccaratViews.BaccaratPage>();
+            builder.Services.AddTransient<ViewModels.GameBaccaratViewModels.BaccaratViewModel>();
+
             builder.Services.AddTransient<Views.LeaderboardPage>();
             builder.Services.AddTransient<ViewModels.LeaderboardViewModel>();
 

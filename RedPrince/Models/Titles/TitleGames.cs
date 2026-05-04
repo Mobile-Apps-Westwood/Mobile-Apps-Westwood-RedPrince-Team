@@ -11,5 +11,7 @@ namespace RedPrince.Models.Titles
 
         public static string BlackJack { get; } = "Black Jack";
 
+        public static string Baccarat { get; } = "Baccarat";
+
     }
 }

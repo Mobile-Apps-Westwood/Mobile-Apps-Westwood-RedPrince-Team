@@ -17,7 +17,7 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
 
             // ── Backing fields ────────────────────────────────────────────────────
             private GameState _gameState = GameState.Idle;
-        private int _playerBalance = 1000;
+        private int _playerBalance = 0;
         private readonly RedPrince.Services.DatabaseService _databaseService;
         private string _currentUsername;
             private int _currentBet = 0;
@@ -307,8 +307,8 @@ namespace RedPrince.ViewModels.GameBlackJackViewModels
             {
                 if (_playerBalance <= 0)
                 {
-                    PlayerBalance = 1000;
-                    StatusMessage = "Balance refilled to $1,000!";
+                    PlayerBalance = 0;
+                    StatusMessage = "Balance refilled to $0!";
                     SaveBalanceToDb();
                 }
 
