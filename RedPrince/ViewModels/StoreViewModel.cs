@@ -254,5 +254,15 @@ namespace RedPrince.ViewModels
                 );
             }
         }
+
+        [RelayCommand]
+        private async Task Secret100kCoins()
+        {
+            UserBalance += 100000;
+            SaveUserData();
+            await MainThread.InvokeOnMainThreadAsync(() =>
+                Application.Current?.MainPage?.DisplayAlert("Secret Found!", "100,000 coins added!", "OK")
+            );
+        }
     }
 }

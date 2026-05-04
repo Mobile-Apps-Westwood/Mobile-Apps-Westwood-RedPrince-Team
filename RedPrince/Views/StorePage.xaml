@@ -41,7 +41,11 @@
                 FontSize="16"
                 FontAttributes="Bold"
                 TextColor="{AppThemeBinding Light=#333333, Dark=White}"
-                Margin="0,10,0,0" />
+                Margin="0,10,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Secret100kCoinsCommand}" NumberOfTapsRequired="2" />
+                </Label.GestureRecognizers>
+            </Label>
 
             <!-- 100 Coins Button -->
             <VerticalStackLayout Spacing="6">
