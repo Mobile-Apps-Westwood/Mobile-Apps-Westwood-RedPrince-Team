@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace RedPrince.ViewModels.GameBlackJackViewModels
+namespace RedPrince.Models
 {
         public class CardViewModel : ObservableObject
         {

@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RedPrince.ViewModels.GameBlackJackViewModels;
+using RedPrince.Models;
 using System.Collections.ObjectModel;
 using System;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Maui.Storage;
 
-namespace RedPrince.ViewModels.GameBaccaratViewModels
+namespace RedPrince.ViewModels
 {
     public class BaccaratViewModel : ObservableObject
     {

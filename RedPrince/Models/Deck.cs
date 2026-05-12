@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedPrince.ViewModels.GameBlackJackViewModels
+namespace RedPrince.Models
 {
     public class Deck
     {

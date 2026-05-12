@@ -86,10 +86,10 @@
 	  <MauiXaml Update="Resources\Styles\AppStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameBaccaratViews\BaccaratPage.xaml">
+	  <MauiXaml Update="Views\BaccaratPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GameBlackJackViews\BlackJackPage.xaml">
+	  <MauiXaml Update="Views\BlackJackPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">

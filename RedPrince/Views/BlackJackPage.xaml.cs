@@ -1,6 +1,6 @@
-namespace RedPrince.Views.GameBlackJackViews;
+namespace RedPrince.Views;
 
-using RedPrince.ViewModels.GameBlackJackViewModels;
+using RedPrince.ViewModels;
 
 public partial class BlackJackPage : ContentPage
 {

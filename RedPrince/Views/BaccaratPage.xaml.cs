@@ -1,6 +1,6 @@
-using RedPrince.ViewModels.GameBaccaratViewModels;
+using RedPrince.ViewModels;
 
-namespace RedPrince.Views.GameBaccaratViews;
+namespace RedPrince.Views;
 
 public partial class BaccaratPage : ContentPage
 {

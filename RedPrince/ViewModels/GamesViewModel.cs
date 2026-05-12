@@ -3,10 +3,7 @@ using RedPrince.Models.Titles;
 using RedPrince.Views;
 using System;
 using System.Collections.Generic;
-
 using System.Text;
-using RedPrince.Views.GameBlackJackViews;
-using RedPrince.Views.GameBaccaratViews;
 
 namespace RedPrince.ViewModels
 {
@@ -23,7 +20,7 @@ namespace RedPrince.ViewModels
         [RelayCommand]
         private async Task  BlackJackPageClicked()
         {
-            await Shell.Current.GoToAsync(nameof(RedPrince.Views.GameBlackJackViews.BlackJackPage));
+            await Shell.Current.GoToAsync(nameof(RedPrince.Views.BlackJackPage));
         }
 
         [RelayCommand]

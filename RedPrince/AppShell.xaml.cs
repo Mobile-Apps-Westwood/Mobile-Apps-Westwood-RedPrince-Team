@@ -1,7 +1,5 @@
 ﻿
 using RedPrince.Views;
-using RedPrince.Views.GameBaccaratViews;
-using RedPrince.Views.GameBlackJackViews;
 
 namespace RedPrince
 {
