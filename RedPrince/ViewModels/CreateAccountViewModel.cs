@@ -64,12 +64,7 @@ namespace RedPrince.ViewModels
         [RelayCommand(CanExecute = nameof(CanCreate))]
         private async Task Create()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Username is required.", "OK");
-                return;
-            }
-
+        
             // Final validation before creating account
             var validationResult = PasswordValidator.ValidatePassword(Password);
             if (!validationResult.IsValid)
